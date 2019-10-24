@@ -15,11 +15,10 @@ const RESPONSE_RAMDA_PATH = [
   "DisplayPosition"
 ];
 
-export const TOGGLE_FILTER = "toggle_filter"
+export const TOGGLE_FILTER = "toggle_filter";
 
 export const FETCH_EVENTS = "fetch_events";
 
-<<<<<<< HEAD
 export function fetchEvents(search) {
   const request = axios
     .get(
@@ -37,13 +36,6 @@ export function fetchEvents(search) {
     .catch(function(error) {
       console.log("HERE ERROR: ", error);
     });
-=======
-
-export function fetchEvents() {
-  const request = axios.get(
-    `https://api.meetup.com/find/upcoming_events?key=597535717d26481d695a15d7f2e753f&sign=true&page=100`
-  );
->>>>>>> 2644ae8e9948d4f6178c298880e09a0e7bf1bee5
 
   return {
     type: FETCH_EVENTS,
@@ -51,10 +43,9 @@ export function fetchEvents() {
   };
 }
 
-export function toggleFilter (filter) {
+export function toggleFilter(filter) {
   return {
     type: TOGGLE_FILTER,
     payload: filter
-  }
+  };
 }
-
