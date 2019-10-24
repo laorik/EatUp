@@ -1,12 +1,24 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class SearchResultsList extends Component {
   render() {
+    console.log("Events:", this.props.filteredEvents);
     return <div className="search-results-list">SearchResultsList</div>;
   }
 }
-function mapStateToProps({ posts }, ownProps) {
-  return { post: posts[ownProps.match.params.id] };
+
+function mapStateToProps({ events, filters }, ownProps) {
+  let filterEvents = function() {
+    return events;
+  };
+
+  return {
+    filteredEvents: filterEvents()
+  };
 }
-export default SearchResultsList;
+
+export default connect(
+  mapStateToProps,
+  null
+)(SearchResultsList);
