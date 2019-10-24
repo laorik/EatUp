@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { toggleFilter } from "../actions"
+import "../index.css";
 
 class FilterTerms extends Component {
   render() {
@@ -12,20 +13,21 @@ class FilterTerms extends Component {
     const foodButtonClass = `${this.props.filters.includes('food') ? 'btn btn-success': 'btn btn-secondary'}`
     const beerButtonClass = `${this.props.filters.includes('beer') ? 'btn btn-success': 'btn btn-secondary'}`
     const drinksButtonClass = `${this.props.filters.includes('drinks') ? 'btn btn-success': 'btn btn-secondary'}`
+
     return (
-      <div>
+      <div className='toggles'>&nbsp;&nbsp;&nbsp;&nbsp;
         <button onClick={() => this.props.toggleFilter('snacks')} type="button-snacks" className= {snacksButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
-        Snacks</button> 
+          Snacks</button> &nbsp;&nbsp;&nbsp;&nbsp;
         <button onClick={() => this.props.toggleFilter('food')} type="button-food" className= {foodButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
-        Food</button> 
-        <button onClick={() => this.props.toggleFilter('beer')} type="button-beer" className={beerButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
-        Beer</button> 
-        <button onClick={() => this.props.toggleFilter('drinks')} type="button-drinks" className={drinksButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
-        Drinks</button>
+          Food</button> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button onClick={() => this.props.toggleFilter('beer')} type="button-beer" className= {beerButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
+          Beer</button> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button onClick={() => this.props.toggleFilter('drinks')} type="button-drinks" className= {drinksButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
+          Drinks</button> &nbsp;&nbsp;&nbsp;&nbsp;
       </div>
     )
   }
-} 
+}  
 function mapStateToProps({ filters }, ownProps) {
   return {
     filters: filters
