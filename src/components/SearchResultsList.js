@@ -41,11 +41,7 @@ function mapStateToProps({ events, filters }, ownProps) {
       return filters.length == 0 || contains;
     });
 
-    console.log("---------------------------");
-    console.log("filters: ", filters);
-    console.log("filtered events: ", filteredFreeEvents);
-    console.log("events: ", events);
-    return filteredFreeEvents;
+    return filteredFreeEvents.sort((a,b)=>(a.time>b.time)?1:-1);
   };
 
   return {
