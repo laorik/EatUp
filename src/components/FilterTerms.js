@@ -2,38 +2,72 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { toggleFilter } from "../actions"
+import { toggleFilter, addFilterTerm } from "../actions";
+
+//the default buttons we want to appear on the screen on new launch
+const DEFAULT_FILTERS = ["Snacks", "Food", "Beer", "Drinks"];
 
 class FilterTerms extends Component {
-  render() {
-    console.log(this.props.filters)
+  //prompts user for new term adds it to the cusom terms list
+  promptAddTerm() {
+    var term = prompt("Add a search term:");
 
-    const snacksButtonClass = `${this.props.filters.includes('snacks') ? 'btn btn-success': 'btn btn-secondary'}`
-    const foodButtonClass = `${this.props.filters.includes('food') ? 'btn btn-success': 'btn btn-secondary'}`
-    const beerButtonClass = `${this.props.filters.includes('beer') ? 'btn btn-success': 'btn btn-secondary'}`
-    const drinksButtonClass = `${this.props.filters.includes('drinks') ? 'btn btn-success': 'btn btn-secondary'}`
+    //only accept if not undefined/null/empty
+    if (term && term.trim()) {
+      this.props.addFilterTerm(term);
+    }
+  }
+
+  renderTermButton(term) {
+    //grey button if currently not filtered, green if so
+    return (
+      <button
+        onClick={() => this.props.toggleFilter(term)}
+        className={`${
+          this.props.filters.includes(term)
+            ? "btn btn-success"
+            : "btn btn-secondary"
+        }`}
+      >
+        {term}
+      </button>
+    );
+  }
+
+  //create buttons for each term in array
+  renderTerms(arrOfTerms) {
+    return _.map(arrOfTerms, filter => {
+      return this.renderTermButton(filter);
+    });
+  }
+
+  render() {
     return (
       <div>
-        <button onClick={() => this.props.toggleFilter('snacks')} type="button-snacks" className= {snacksButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
-        Snacks</button> 
-        <button onClick={() => this.props.toggleFilter('food')} type="button-food" className= {foodButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
-        Food</button> 
-        <button onClick={() => this.props.toggleFilter('beer')} type="button-beer" className={beerButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
-        Beer</button> 
-        <button onClick={() => this.props.toggleFilter('drinks')} type="button-drinks" className={drinksButtonClass} data-toggle="button" aria-pressed="false" autocomplete="off">
-        Drinks</button>
+        {this.renderTerms(DEFAULT_FILTERS)}
+        {this.renderTerms(this.props.customFilters)}
+        <button
+          onClick={this.promptAddTerm.bind(this)}
+          className="btn btn-success"
+        >
+          +
+        </button>
       </div>
-    )
+    );
   }
-} 
-function mapStateToProps({ filters }, ownProps) {
+}
+
+function mapStateToProps({ filters, customFilters }, ownProps) {
   return {
-    filters: filters
+    //list of active filters
+    filters,
+    //list of custom added filters
+    customFilters
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleFilter }, dispatch);
+  return bindActionCreators({ toggleFilter, addFilterTerm }, dispatch);
 }
 
 export default connect(
