@@ -1,10 +1,10 @@
 import _ from "lodash";
 import { FETCH_EVENTS } from "../actions";
 
-export default function(state = {}, action) {
+export default function(state = [], action) {
   switch (action.type) {
     case FETCH_EVENTS:
-      return _.mapKeys(action.payload.data.events, "id");
+      return action.payload.data.events.slice(0);
     default:
       return state;
   }
