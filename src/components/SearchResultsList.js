@@ -6,5 +6,7 @@ class SearchResultsList extends Component {
     return <div className="search-results-list">SearchResultsList</div>;
   }
 }
-
+function mapStateToProps({ posts }, ownProps) {
+  return { post: posts[ownProps.match.params.id] };
+}
 export default SearchResultsList;
