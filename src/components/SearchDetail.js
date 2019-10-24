@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import { bindActionCreators } from "redux";
 import moment from "moment";
 
 class SearchDetail extends Component {
@@ -24,12 +23,14 @@ class SearchDetail extends Component {
           Date: {moment(event.local_date).format("MMMM Do YYYY")} Time:{" "}
           {moment(event.local_time, "HH:mm:ss").format("h:mm:ss A")}
         </h5>
+        {/* doing this so that html from meetup is rendered nicely */}
         <div dangerouslySetInnerHTML={{ __html: event.description }}></div>
       </div>
     );
   }
 }
 
+//set event to the id that matches the url
 function mapStateToProps(state, ownProps) {
   return { event: state.events.find(e => e.id === ownProps.match.params.id) };
 }
