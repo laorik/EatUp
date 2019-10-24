@@ -5,6 +5,21 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { bindActionCreators } from "redux";
 import { fetchEvents } from "../actions";
+import * as R from "ramda";
+
+const HERE_API_URL = "https://geocoder.api.here.com/6.2/geocode.json";
+const APP_CODE = "XiAH-_8pbmtvUn1IKaHZ2w";
+const API_KEY = "69zZHOBAGOl9MV8qbVmG";
+const RESPONSE_RAMDA_PATH = [
+  "data",
+  "Response",
+  "View",
+  0,
+  "Result",
+  0,
+  "Location",
+  "DisplayPosition"
+];
 
 class SearchBar extends Component {
   renderField(field) {
@@ -23,13 +38,32 @@ class SearchBar extends Component {
   }
 
   onSubmit(values) {
-    const request = axios.get(
-      `https://geocoder.api.here.com/6.2/geocode.json?app_id=69zZHOBAGOl9MV8qbVmG&app_code=XiAH-_8pbmtvUn1IKaHZ2w&searchtext=200%20S%20Mathilda%20Sunnyvale%20CA`
-    );
+    {
+      /* going to do this ugly for now and do an axios request and then action of it's response 
+        other middlewares look promising but we don't have time right now*/
+    }
 
-    request.then(response => {
-      console.log(response);
-    });
+    const request = axios
+      .get(
+        `${HERE_API_URL}?app_id=${API_KEY}&app_code=${APP_CODE}&searchtext=${values.title}`
+      )
+      .then(function(response) {
+        let lat = R.pathOr(
+          null,
+          [...RESPONSE_RAMDA_PATH, "Latitude"],
+          response
+        );
+        let lon = R.pathOr(
+          null,
+          [...RESPONSE_RAMDA_PATH, "Longitude"],
+          response
+        );
+        console.log("lat: ", lat);
+        console.log("lon: ", lon);
+      })
+      .catch(function(error) {
+        console.log("HERE ERROR: ", error);
+      });
   }
 
   render() {
