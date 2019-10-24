@@ -1,6 +1,6 @@
 import _ from "lodash";
+import React, {Component} from 'react';
 import { connect } from "react-redux";
-import React, { Component } from "react";
 import SearchResult from "./SearchResult";
 
 class SearchResultsList extends Component {
