@@ -15,10 +15,10 @@ class SearchDetail extends Component {
 
     return (
       <div>
-        <Link to="/">Back To Index</Link>
+        <Link to="/">Back To Events Page</Link>
         <h3><a href= {event.link}>{event.name}</a></h3>
         <h5>Date: {moment(event.local_date).format('MMMM Do YYYY')} Time: {moment(event.local_time,'HH:mm:ss').format('h:mm:ss A')}</h5>
-        <h6>Description: {event.description}</h6>
+        <div dangerouslySetInnerHTML= {{__html: event.description}}></div>
       </div>
     );
   }
