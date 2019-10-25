@@ -3,9 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { bindActionCreators } from "redux";
-import { fetchEvents } from "../actions";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { fetchEvents, setIsLoading } from "../actions";
+import Spinner from "react-bootstrap/Spinner";
 
 class SearchBar extends Component {
   renderField(field) {
@@ -23,8 +22,15 @@ class SearchBar extends Component {
           {...field.input}
         />
         <span class="input-group-btn">
-          <button type="submit" className="btn btn-primary submit-btn">
-            Submit
+          <button
+            type="submit"
+            className="btn btn-primary submit-btn glyphicon glyphicon-refresh spinning"
+          >
+            {field.isLoading ? (
+              <Spinner animation="border" role="status" size="sm" />
+            ) : (
+              "Submit"
+            )}
           </button>
         </span>
         {/*<div className="text-help">{touched ? error : ""}</div>*/}
@@ -33,15 +39,20 @@ class SearchBar extends Component {
   }
 
   onSubmit(values) {
+    this.props.setIsLoading();
     this.props.fetchEvents(values.title);
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, isLoading } = this.props;
     return (
       <div className="search-bar">
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="title" component={this.renderField} />
+          <Field
+            name="title"
+            isLoading={isLoading}
+            component={this.renderField}
+          />
         </form>
       </div>
     );
@@ -49,7 +60,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchEvents }, dispatch);
+  return bindActionCreators({ fetchEvents, setIsLoading }, dispatch);
 }
 
 function validate(values) {
@@ -66,12 +77,19 @@ function validate(values) {
   return errors;
 }
 
+//set event to the id that matches the url
+function mapStateToProps({ isLoading }, ownProps) {
+  return {
+    isLoading
+  };
+}
+
 const postNewPost = reduxForm({
   validate: validate,
   form: "postNew"
 })(SearchBar);
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(postNewPost);

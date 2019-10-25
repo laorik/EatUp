@@ -24,6 +24,7 @@ const RESPONSE_RAMDA_PATH = [
 export const TOGGLE_FILTER = "toggle_filter";
 export const FETCH_EVENTS = "fetch_events";
 export const ADD_FILTER_TERM = "add_term";
+export const IS_LOADING = "is_loading";
 
 export function fetchEvents(search) {
   //start and axios request to HERE maps, then with that response (which translates address into lat/lon)
@@ -75,5 +76,13 @@ export function addFilterTerm(filter) {
   return {
     type: ADD_FILTER_TERM,
     payload: filter
+  };
+}
+
+//add a custom filter term
+export function setIsLoading() {
+  return {
+    type: IS_LOADING,
+    payload: true
   };
 }
