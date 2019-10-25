@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import "../index.css";
 import { toggleFilter, addFilterTerm } from "../actions";
 
 //the default buttons we want to appear on the screen on new launch
