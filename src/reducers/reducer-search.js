@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { FETCH_EVENTS } from "../actions";
 
 export default function(state = [], action) {

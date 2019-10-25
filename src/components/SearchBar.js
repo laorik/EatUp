@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
@@ -21,7 +20,7 @@ class SearchBar extends Component {
           type="text"
           {...field.input}
         />
-        <span class="input-group-btn">
+        <span className="input-group-btn">
           <button
             type="submit"
             className="btn btn-primary submit-btn glyphicon glyphicon-refresh spinning"

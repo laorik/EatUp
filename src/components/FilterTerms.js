@@ -23,6 +23,7 @@ class FilterTerms extends Component {
     //grey button if currently not filtered, green if so
     return (
       <button
+        key={term}
         onClick={() => this.props.toggleFilter(term)}
         className={`${
           this.props.filters.includes(term)

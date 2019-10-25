@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import SearchBar from "../components/SearchBar";
 import FilterTerms from "../components/FilterTerms";

@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { IS_LOADING, FETCH_EVENTS } from "../actions";
 
 export default function(state = false, action) {
