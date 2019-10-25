@@ -33,10 +33,11 @@ export function fetchEvents(search) {
       `${CORS_HEROKU}${HERE_API_URL}?app_id=${HERE_API_KEY}&app_code=${HERE_APP_CODE}&searchtext=${search}`
     )
     .then(function(response) {
+      console.log("HERE Api response", response);
       let lat = R.pathOr(null, [...RESPONSE_RAMDA_PATH, "Latitude"], response);
       let lon = R.pathOr(null, [...RESPONSE_RAMDA_PATH, "Longitude"], response);
       return axios.get(
-        `${CORS_HEROKU}${MEETUP_API_URL}?key=${MEETUP_API_KEY}&lat=${lat}&lon=${lon}&sign=true&page=250`
+        `${MEETUP_API_URL}?key=${MEETUP_API_KEY}&lat=${lat}&lon=${lon}&sign=true&page=250`
       );
     })
     .catch(function(error) {

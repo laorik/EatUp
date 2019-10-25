@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Rock+Salt&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rock+Salt&display=swap");
 
 #root {
   min-height: 100vh;
-  background-color:#333;
+  background-color: #333;
 }
 
 code {
@@ -18,14 +17,14 @@ code {
 }
 
 .logo {
-  font-family: 'Sedgwick Ave Display', cursive;
+  font-family: "Sedgwick Ave Display", cursive;
   font-size: 200px;
   text-align: center;
   color: red;
   margin-bottom: 50px;
 }
 .line {
-  font-family: 'Rock Salt', cursive;
+  font-family: "Rock Salt", cursive;
   font-size: 25px;
   text-align: center;
   color: white;
@@ -43,14 +42,13 @@ code {
   margin-left: auto;
   margin-right: auto;
   width: auto;
-
 }
 
-.color{
+.color {
   color: white;
 }
 
-.btn{
+.btn {
   margin: 5px;
 }
 
@@ -64,9 +62,11 @@ code {
   width: 50%;
 } */
 
-
-
-
-
-
-
+.detail-view {
+  color: white;
+}
+.important-term {
+  color: #5cb85c;
+  font-size: 50px;
+  font-weight: bold;
+}
