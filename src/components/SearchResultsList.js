@@ -39,9 +39,8 @@ function mapStateToProps({ events, filters }, ownProps) {
     filteredFreeEvents = _.filter(filteredFreeEvents, function(event) {
       var contains = false;
       for (let i = 0; i < filters.length && !contains; i++) {
-        contains = event.description
-          .toLowerCase()
-          .includes(filters[i].toLowerCase());
+        var regex = new RegExp("\\b" + filters[i] + "\\b", "gi");
+        contains = regex.test(event.description);
       }
 
       return filters.length == 0 || contains;
