@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import SearchResult from "./SearchResult";
+import { DEFAULT_FILTERS } from "./FilterTerms";
 
 class SearchResultsList extends Component {
   render() {
@@ -26,7 +27,7 @@ class SearchResultsList extends Component {
   }
 }
 
-function mapStateToProps({ events, filters }, ownProps) {
+function mapStateToProps({ events, filters, customFilters }, ownProps) {
   let filterEvents = function() {
     let filteredFreeEvents = _.filter(events, function(event) {
       return (
@@ -36,14 +37,24 @@ function mapStateToProps({ events, filters }, ownProps) {
       );
     });
 
+    let filtersList = [];
+
+    if (filters.length > 0) {
+      filtersList = filters;
+    } else {
+      console.log(DEFAULT_FILTERS);
+      filtersList = filtersList.concat(DEFAULT_FILTERS);
+      filtersList = filtersList.concat(customFilters);
+    }
+
     filteredFreeEvents = _.filter(filteredFreeEvents, function(event) {
       var contains = false;
-      for (let i = 0; i < filters.length && !contains; i++) {
-        var regex = new RegExp("\\b" + filters[i] + "\\b", "gi");
+      for (let i = 0; i < filtersList.length && !contains; i++) {
+        var regex = new RegExp("\\b" + filtersList[i] + "\\b", "gi");
         contains = regex.test(event.description);
       }
 
-      return filters.length == 0 || contains;
+      return filtersList == 0 || contains;
     });
 
     return filteredFreeEvents.sort((a, b) => (a.time > b.time ? 1 : -1));
@@ -51,7 +62,8 @@ function mapStateToProps({ events, filters }, ownProps) {
 
   return {
     filteredEvents: filterEvents(),
-    filters
+    filters,
+    customFilters
   };
 }
 

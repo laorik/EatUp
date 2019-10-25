@@ -6,7 +6,7 @@ import "../index.css";
 import { toggleFilter, addFilterTerm } from "../actions";
 
 //the default buttons we want to appear on the screen on new launch
-const DEFAULT_FILTERS = ["Snacks", "Food", "Beer", "Drinks"];
+export const DEFAULT_FILTERS = ["Snacks", "Food", "Beer", "Drinks"];
 
 class FilterTerms extends Component {
   //prompts user for new term adds it to the custom terms list
