@@ -5,6 +5,7 @@ const HERE_API_URL = "https://geocoder.api.here.com/6.2/geocode.json";
 const HERE_APP_CODE = "XiAH-_8pbmtvUn1IKaHZ2w";
 const HERE_API_KEY = "69zZHOBAGOl9MV8qbVmG";
 
+const CORS_HEROKU = "https://cors-anywhere.herokuapp.com/";
 const MEETUP_API_URL = "https://api.meetup.com/find/upcoming_events";
 const MEETUP_API_KEY = "597535717d26481d695a15d7f2e753f";
 
@@ -29,13 +30,13 @@ export function fetchEvents(search) {
   //request from Meetup upcoming events using the lat/lon
   const request = axios
     .get(
-      `${HERE_API_URL}?app_id=${HERE_API_KEY}&app_code=${HERE_APP_CODE}&searchtext=${search}`
+      `${CORS_HEROKU}${HERE_API_URL}?app_id=${HERE_API_KEY}&app_code=${HERE_APP_CODE}&searchtext=${search}`
     )
     .then(function(response) {
       let lat = R.pathOr(null, [...RESPONSE_RAMDA_PATH, "Latitude"], response);
       let lon = R.pathOr(null, [...RESPONSE_RAMDA_PATH, "Longitude"], response);
       return axios.get(
-        `${MEETUP_API_URL}?key=${MEETUP_API_KEY}&lat=${lat}&lon=${lon}&sign=true&page=250`
+        `${CORS_HEROKU}${MEETUP_API_URL}?key=${MEETUP_API_KEY}&lat=${lat}&lon=${lon}&sign=true&page=250`
       );
     })
     .catch(function(error) {
