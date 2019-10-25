@@ -5,7 +5,10 @@ export default function(state = [], action) {
   switch (action.type) {
     case FETCH_EVENTS:
       console.log("MEETUP Api response", action.payload);
-      return action.payload.data.events.slice(0);
+      if (action.payload) {
+        return action.payload.data.events.slice(0);
+      }
+      return state;
     default:
       return state;
   }
