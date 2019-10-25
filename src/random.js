@@ -11,3 +11,14 @@ var snacksFilter = _.filter(data, function(event) {
 });
 
 var results = beerFilter.concat(snacksFilter).unique();
+
+let initState = {};
+const persistedState = localStorage.getItem("reduxState");
+if (persistedState) {
+  initState = JSON.parse(persistedState);
+}
+let store = createStore(reducers, initState, applyMiddleware(promise));
+
+store.subscribe(() => {
+  localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+});
