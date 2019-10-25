@@ -7,7 +7,7 @@ class SearchResultsList extends Component {
   render() {
     return (
       <div className="search-results-list">
-        Search Results List
+        <h3 className="color">Search Results List</h3>
         {this.renderEvents()}
       </div>
     );

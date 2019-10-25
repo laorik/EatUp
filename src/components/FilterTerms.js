@@ -9,7 +9,7 @@ import { toggleFilter, addFilterTerm } from "../actions";
 const DEFAULT_FILTERS = ["Snacks", "Food", "Beer", "Drinks"];
 
 class FilterTerms extends Component {
-  //prompts user for new term adds it to the cusom terms list
+  //prompts user for new term adds it to the custom terms list
   promptAddTerm() {
     var term = prompt("Add a search term:");
 

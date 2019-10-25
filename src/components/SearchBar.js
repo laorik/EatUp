@@ -15,7 +15,7 @@ class SearchBar extends Component {
     return (
       <div className={className}>
         <label>{field.label}</label>
-        <input className="form-control" type="text" {...field.input} />
+        <input placeholder="Location" className="form-control" type="text" {...field.input} />
         <div className="text-help">{touched ? error : ""}</div>
       </div>
     );
@@ -30,7 +30,7 @@ class SearchBar extends Component {
     return (
       <div className="search-bar">
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field label="Location" name="title" component={this.renderField} />
+          <Field name="title" component={this.renderField} />
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
