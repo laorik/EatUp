@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
+
+
+
 class SearchDetail extends Component {
   render() {
     const { event } = this.props;
@@ -19,12 +22,12 @@ class SearchDetail extends Component {
             {event.name}
           </a>
         </h3>
-        <h5>
+        <h5 style={{ color: 'yellow' }}>
           Date: {moment(event.local_date).format("MMMM Do YYYY")} Time:{" "}
-          {moment(event.local_time, "HH:mm:ss").format("h:mm:ss A")}
+          {moment(event.local_time, "HH:mm:ss").format("h:mm A")}
         </h5>
         {/* doing this so that html from meetup is rendered nicely */}
-        <div dangerouslySetInnerHTML={{ __html: event.description }}></div>
+        <div className="description" style={{ color: 'white' }} dangerouslySetInnerHTML={{ __html: event.description }}></div>
       </div>
     );
   }

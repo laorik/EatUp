@@ -30,7 +30,7 @@ class SearchBar extends Component {
     return (
       <div className="search-bar">
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field label="Location" name="title" component={this.renderField} />
+          <Field label="" name="title" component={this.renderField} />
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

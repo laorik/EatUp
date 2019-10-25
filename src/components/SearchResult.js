@@ -8,7 +8,7 @@ const SearchResult = props => {
             <Link to={`/event/${props.event.id}`}>
             {props.event.name}</Link><br></br>
             Date: {moment(props.event.local_date).format('MMMM Do YYYY')}<br></br>
-            Time: {moment(props.event.local_time,'HH:mm:ss').format('h:mm:ss A')}
+            Time: {moment(props.event.local_time,'HH:mm:ss').format('h:mm A')}
             
         </li>
     )

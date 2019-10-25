@@ -6,9 +6,11 @@ import SearchResult from "./SearchResult";
 class SearchResultsList extends Component {
   render() {
     return (
+      <div>
+        {this.props.filteredEvents.length > 0 ? <h1 style={{ color: 'green' }} className="search-header">Free food below...</h1> :""}
       <div className="search-results-list">
-        Search Results List
         {this.renderEvents()}
+      </div>
       </div>
     );
   }

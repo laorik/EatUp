@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Livvic&display=swap');
 
 
 body {
@@ -36,8 +37,8 @@ code {
 
 .picture {
   display: block;
-  margin-left: left;
-  margin-right: left;
+  margin-left: auto;
+  margin-right: auto;
   width: auto;
 }
 .picture2 {
@@ -52,8 +53,18 @@ code {
   background-color: black;
 }
 
+#root {
+  text-decoration-color: white;
+}
 
+.description {
+  font-family: 'Livvic', sans-serif;
+}
 
+.search-header {
+  font-size: 40px;
+  text-align: center;
+}
 
 
 
