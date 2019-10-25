@@ -30,14 +30,27 @@ export function fetchEvents(search) {
   //request from Meetup upcoming events using the lat/lon
   const request = axios
     .get(
-      `${CORS_HEROKU}${HERE_API_URL}?app_id=${HERE_API_KEY}&app_code=${HERE_APP_CODE}&searchtext=${search}`
+      `${HERE_API_URL}?app_id=${HERE_API_KEY}&app_code=${HERE_APP_CODE}&searchtext=${search}`
     )
     .then(function(response) {
-      let lat = R.pathOr(null, [...RESPONSE_RAMDA_PATH, "Latitude"], response);
-      let lon = R.pathOr(null, [...RESPONSE_RAMDA_PATH, "Longitude"], response);
-      return axios.get(
-        `${CORS_HEROKU}${MEETUP_API_URL}?key=${MEETUP_API_KEY}&lat=${lat}&lon=${lon}&sign=true&page=250`
+      console.log("HERE Api response", response);
+      let lat = R.pathOr(
+        undefined,
+        [...RESPONSE_RAMDA_PATH, "Latitude"],
+        response
       );
+      let lon = R.pathOr(
+        undefined,
+        [...RESPONSE_RAMDA_PATH, "Longitude"],
+        response
+      );
+
+      if (lat && lon) {
+        return axios.get(
+          `${MEETUP_API_URL}?key=${MEETUP_API_KEY}&lat=${lat}&lon=${lon}&sign=true&page=250`
+        );
+      }
+      alert("Location Not Found");
     })
     .catch(function(error) {
       console.log("HERE ERROR: ", error);

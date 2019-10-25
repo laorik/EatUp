@@ -4,19 +4,30 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { bindActionCreators } from "redux";
 import { fetchEvents } from "../actions";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class SearchBar extends Component {
   renderField(field) {
     const {
       meta: { touched, error }
     } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    const className = `input-group ${touched && error ? "has-danger" : ""}`;
 
     return (
       <div className={className}>
-        <label>{field.label}</label>
-        <input className="form-control" type="text" {...field.input} />
-        <div className="text-help">{touched ? error : ""}</div>
+        <input
+          placeholder="Location"
+          className="form-control"
+          type="text"
+          {...field.input}
+        />
+        <span class="input-group-btn">
+          <button type="submit" className="btn btn-primary submit-btn">
+            Submit
+          </button>
+        </span>
+        {/*<div className="text-help">{touched ? error : ""}</div>*/}
       </div>
     );
   }
@@ -30,10 +41,7 @@ class SearchBar extends Component {
     return (
       <div className="search-bar">
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field label="" name="title" component={this.renderField} />
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
+          <Field name="title" component={this.renderField} />
         </form>
       </div>
     );
