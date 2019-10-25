@@ -25,23 +25,20 @@ class SearchDetail extends Component {
     return (
       <div>
         <Link to="/">Back To Events Page</Link>
-        <div class="detail-view">
-          <h3>
-            <a href={event.link} target="_blank">
-              {event.name}
-            </a>
-          </h3>
-          <h5>
-            Date: {moment(event.local_date).format("MMMM Do YYYY")} Time:{" "}
-            {moment(event.local_time, "HH:mm:ss").format("h:mm:ss A")}
-          </h5>
-          {/* doing this so that html from meetup is rendered nicely */}
-          <div
-            dangerouslySetInnerHTML={{
-              __html: highlightedText
-            }}
-          ></div>
-        </div>
+        <h3>
+          <a href={event.link} target="_blank">
+            {event.name}
+          </a>
+        </h3>
+        <h5 style={{ color: "yellow" }}>
+          Date: {moment(event.local_date).format("MMMM Do YYYY")} Time:{" "}
+          {moment(event.local_time, "HH:mm:ss").format("h:mm A")}
+        </h5>
+        {/* doing this so that html from meetup is rendered nicely */}
+        <div
+          className="description"
+          dangerouslySetInnerHTML={{ __html: highlightedText }}
+        ></div>
       </div>
     );
   }

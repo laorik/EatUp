@@ -1,14 +1,20 @@
 import _ from "lodash";
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import SearchResult from "./SearchResult";
 
 class SearchResultsList extends Component {
   render() {
     return (
-      <div className="search-results-list">
-        <h3 className="color">Search Results List</h3>
-        {this.renderEvents()}
+      <div>
+        {this.props.filteredEvents.length > 0 ? (
+          <h1 style={{ color: "green" }} className="search-header">
+            Free food below...
+          </h1>
+        ) : (
+          ""
+        )}
+        <div className="search-results-list">{this.renderEvents()}</div>
       </div>
     );
   }
@@ -41,7 +47,7 @@ function mapStateToProps({ events, filters }, ownProps) {
       return filters.length == 0 || contains;
     });
 
-    return filteredFreeEvents.sort((a,b)=>(a.time>b.time)?1:-1);
+    return filteredFreeEvents.sort((a, b) => (a.time > b.time ? 1 : -1));
   };
 
   return {

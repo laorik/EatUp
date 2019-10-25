@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rock+Salt&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Livvic&display=swap");
 
 #root {
   min-height: 100vh;
@@ -18,7 +19,7 @@ code {
 
 .logo {
   font-family: "Sedgwick Ave Display", cursive;
-  font-size: 200px;
+  font-size: 170px;
   text-align: center;
   color: red;
   margin-bottom: 50px;
@@ -28,7 +29,7 @@ code {
   font-size: 25px;
   text-align: center;
   color: white;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .picture {
@@ -48,6 +49,19 @@ code {
   color: white;
 }
 
+#root {
+  text-decoration-color: white;
+}
+
+.description {
+  font-family: "Livvic", sans-serif;
+  color: white;
+}
+
+.search-header {
+  font-size: 40px;
+  text-align: center;
+}
 .btn {
   margin: 5px;
 }
@@ -73,9 +87,6 @@ code {
   width: 50%;
 } */
 
-.detail-view {
-  color: white;
-}
 .important-term {
   color: #5cb85c;
   font-size: 50px;
