@@ -3,19 +3,30 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import _ from "lodash";
+import { DEFAULT_FILTERS } from "./FilterTerms";
 
 class SearchDetail extends Component {
   render() {
-    const { event, filters } = this.props;
+    const { event, filters, customFilters } = this.props;
 
     if (!event) {
       return <div>Loading...</div>;
     }
 
+    let filtersList = [];
+
+    if (filters.length > 0) {
+      filtersList = filters;
+    } else {
+      console.log(DEFAULT_FILTERS);
+      filtersList = filtersList.concat(DEFAULT_FILTERS);
+      filtersList = filtersList.concat(customFilters);
+    }
+
     let highlightedText = event.description;
 
     //replace any instace of our page filter with a span that highlights the word and makes it huge
-    _.forEach([...filters, "free"], function(value) {
+    _.forEach([...filtersList, "free"], function(value) {
       var regex = new RegExp("\\b" + value + "\\b", "gi");
       highlightedText = highlightedText.replace(regex, function(matched) {
         return '<span class="important-term">' + matched + "</span>";
@@ -45,10 +56,11 @@ class SearchDetail extends Component {
 }
 
 //set event to the id that matches the url
-function mapStateToProps({ events, filters }, ownProps) {
+function mapStateToProps({ events, filters, customFilters }, ownProps) {
   return {
     event: events.find(e => e.id === ownProps.match.params.id),
-    filters
+    filters,
+    customFilters
   };
 }
 
