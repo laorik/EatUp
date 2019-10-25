@@ -51,6 +51,17 @@ code {
 .btn {
   margin: 5px;
 }
+.search-bar {
+  padding-top: 25px;
+  text-align: center;
+}
+.submit-btn {
+  display: block;
+}
+
+.form-control {
+  margin: 5px;
+}
 
 /* .background {
   background-color: black;
